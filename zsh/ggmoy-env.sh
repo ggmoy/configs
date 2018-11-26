@@ -37,15 +37,18 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 # The following line fix TMUX sintax Highlighting problems
 export TERM="xterm-256color"
 
-export PATH=$PATH:$HOME/Library/Python/2.7/bin
-export PATH=$PATH:$HOME/Documents/HashiCorp/Terraform/bin
-
-# Start ssh-agent
-if [ ! -e /tmp/.ssh-agent ]
+if [[ "$(uname)" == "Darwin" ]]
 then
-    ssh-agent > /tmp/.ssh-agent
-fi
-source /tmp/.ssh-agent
+    export PATH=$PATH:$HOME/Library/Python/2.7/bin
+    export PATH=$PATH:$HOME/Documents/HashiCorp/Terraform/bin
 
-export ANSIBLE_CONFIG=$HOME/ansible/ansible.cfg
-#export ANSIBLE_INVENTORY=$HOME/ansible/hosts
+    # Start ssh-agent
+    if [ ! -e /tmp/.ssh-agent ]
+    then
+        ssh-agent > /tmp/.ssh-agent
+    fi
+    source /tmp/.ssh-agent
+    
+    export ANSIBLE_CONFIG=$HOME/ansible/ansible.cfg
+    #export ANSIBLE_INVENTORY=$HOME/ansible/hosts
+fi
