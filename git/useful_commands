@@ -1,0 +1,69 @@
+##
+# User configuration
+##
+git config --global user.name "Gustavo G. Moyano"
+git config --global user.email gustavo.g.moyano@gmail.com
+git config --global push.default simple
+git config --global http.postBuffer 524288000
+
+##
+#
+##
+git config -l | grep remote.origin.url
+
+##
+# Show the origin of a local repository clone
+##
+git remote show origin
+
+##
+# Creating a tag and push it to remote
+##
+git tag v3.1.4
+git push origin [v3.1.4|--tags]
+
+##
+# Showing tags
+##
+git tag
+git show v3.1.4
+git tag -l 'v1.4.2.*'
+
+##
+# Create a new branch and check it out
+##
+git checkout -b <new_branch>
+
+##
+# Push new created branch
+##
+git push -u origin <branch>
+
+##
+# Delete a local branch
+##
+git branch -d <branch_name>
+
+##
+# Delete a remote branch
+##
+git push origin --delete <branch_name>
+
+##
+# Merge piloto to master
+##
+git checkout master
+git merge piloto
+git push
+
+##
+# How to sync a child fork with its upstream
+##
+First: https://help.github.com/articles/configuring-a-remote-for-a-fork/
+And then: https://help.github.com/articles/syncing-a-fork/
+
+##
+# Check out remote branch
+##
+git fetch origin
+git checkout -b test origin/test
