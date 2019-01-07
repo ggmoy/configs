@@ -1,0 +1,62 @@
+##
+# Get a list of all supported services
+##
+firewall-cmd --get-services
+
+##
+# List all zones with the enabled features.
+##
+firewall-cmd --list-all-zones
+
+##
+# Print zone <zone> with the enabled features. If zone is omitted, the default zone will be used.
+##
+firewall-cmd [--zone=<zone>] --list-all
+
+##
+# Get the default zone set for network connections
+##
+firewall-cmd --get-default-zone
+
+##
+# Set the default zone
+##
+firewall-cmd --set-default-zone=<zone>
+
+##
+# Get active zones
+##
+firewall-cmd --get-active-zones
+
+##
+# Allow or disable TCP traffic on port 12345
+##
+firewall-cmd --zone=public --add-port=12345/tcp --permanent
+firewall-cmd --zone=public --remove-port=12345/tcp --permanent
+
+##
+# The example rule below forwards traffic from port 80 to port 12345 on the same server
+##
+firewall-cmd --zone=public --add-forward-port=port=80:proto=tcp:toport=12345
+
+##
+# To forward a port to a different server:
+#
+#  1) Activate masquerade in the desired zone
+#  2) Add the forward rule. This example forwards traffic from local port 80 to port 8080
+#     on a remote server located at the IP address: 123.456.78.9
+##
+firewall-cmd --zone=public --add-masquerade
+firewall-cmd --zone=public --add-forward-port=port=80:proto=tcp:toport=8080:toaddr=123.456.78.9
+
+##
+# To remove the rules, substitute --add with --remove. For example:
+##
+firewall-cmd --zone=public --remove-masquerade
+
+##
+# Sources:
+#
+# - https://www.linode.com/docs/security/firewalls/introduction-to-firewalld-on-centos/
+# - https://fedoraproject.org/wiki/Firewalld?rd=FirewallD
+##
