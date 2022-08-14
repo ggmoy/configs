@@ -23,6 +23,12 @@ git tag v3.1.4
 git push origin [v3.1.4|--tags]
 
 ##
+# Remove tag 'v3.1.4'
+##
+git tag --delete v3.1.4
+git push origin :refs/tags/v3.1.4
+
+##
 # Showing tags
 ##
 git tag
